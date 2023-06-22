@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Person {
 
     private String name;
@@ -109,11 +112,25 @@ public class Person {
     public void addChild(Person child) {
         this.children.add(child);
     }
+    public void addParents(Person mother, Person father) {
+        this.mother = mother;
+        this.father = father;
+    }
 
-    public void addPets(Person pets);
-        this.pets.add(pet);
+    public void addSibling(Person sibling) {
+        this.siblings.add(sibling);
+    }
 
+    public List<Person> getGrandChildren() {
+        List<Person> grandChildren = new ArrayList<>();
+        for (Person child : this.children) {
+            grandChildren.addAll(child.getChildren());
+        }
+        return grandChildren;
+    }
 
 }
+
+
 
 
