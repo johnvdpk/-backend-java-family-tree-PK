@@ -1,7 +1,15 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class PersonTest {
+
+    //@BeforeEach
+
 
     @Test
     public void testSetName() {
@@ -100,11 +108,68 @@ public class PersonTest {
 
 
     @Test
-    public void testList<Person>childeren() {
+    public void testListchilderen() {
+        //arrange
+        Person child = new Person("Cindy", "Maria", "Bakker", "female", 6);
+        Person child2 = new Person("Cindy2", "Maria", "Bakker", "female", 6);
+        Person mother = new Person("Beb", "maria", "Bakker", "female", 40);
+
+        List<Person> childeren = new ArrayList<>();
+        childeren.add(child);
+        childeren.add(child2);
+        mother.setChildren(childeren);
+
+
+        //act
+
+        List<Person> expectedChilderen = mother.getChildren();
+
+        //assert
+
+        assertEquals(expectedChilderen, childeren);
+    }
+
+    @Test
+    public void testListSiblings() {
+        //arrange
+        Person person = new Person("Kris", "Lotty", "Kraslot", "male", 20);
+        Person sibling01 = new Person("Cindy", "Maria", "Bakker", "female", 6);
+        Person sibling02 = new Person("Cindy2", "Maria", "Bakker", "female", 6);
+
+        List<Person>siblings = new ArrayList<>();
+        siblings.add(sibling01);
+        siblings.add(sibling02);
+        person.setSiblings(siblings);
+
+        // act
+        List<Person> expectedSiblings = person.setSiblings(siblings);
+
+        //assert
+
+        assertEquals(expectedSiblings, siblings);
 
     }
 
+    @Test
+    public void testListGrandChilderen() {
+        //arrange
+        Person person = new Person("Kris", "Lotty", "Kraslot", "male", 20);
+        Person grandChild01 = new Person("Butterfly", "Maria", "Bakker", "female", 6);
+        Person grandChild02 = new Person("Maven", "Maria", "Bakker", "female", 6);
 
+        List<Person>grandChilderen = new ArrayList<>();
+        grandChilderen.add(grandChild01);
+        grandChilderen.add(grandChild02);
+        person.setSiblings(grandChilderen);
+
+        // act
+        List<Person> expectedGrandChilderen = person.setGrandChilderen(grandChilderen);
+
+        //assert
+
+        assertEquals(expectedGrandChilderen, grandChilderen);
+
+    }
 
 }
 
